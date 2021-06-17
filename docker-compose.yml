@@ -1,0 +1,33 @@
+# version: "3.7"
+# services: 
+#     db: 
+#         image: postgres:alpine
+#         restart: always
+#         environment:
+#             POSTGRES_PASSWORD: password
+#             POSTGRES_USER: test
+#             POSTGRES_DB: test
+#         volumes: 
+#             - ./pgdata/:/var/lib/postgresql/data/
+#         ports: 
+#             - "5432:5432"
+
+#     script:
+#         image: script-v1
+#         restart: always
+#         volumes:
+#             - ./NewsScraper/:/app/
+#         depends_on: 
+#             - db
+
+
+version: "3.8"
+services:
+    db:
+        build: ./Postgresql/
+    
+    app :
+        depends_on: 
+            - db
+        build: ./NewsScraper/
+  
